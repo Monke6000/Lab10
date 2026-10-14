@@ -1,0 +1,8 @@
+1. ¿Cuál es la diferencia entre extends Thread e implements Runnable? ¿Cuándo preferirías uno sobre el otro?
+Respuesta: "extends Thread" convierte la clase en un hilo directamente, pero impide heredar de otras clases porque Java no soporta herencia múltiple. "implements Runnable" separa la tarea concurrente del hilo, permitiendo extender de otras clases. Se prefiere casi siempre Runnable por ser más flexible y tener mejor diseño.
+
+2. ¿Qué es una race condition? Explica con el ejemplo del ContadorCompartido por qué el resultado sin synchronized puede ser menor a 5000.
+Respuesta: Una race condition ocurre cuando varios hilos intentan modificar una misma variable compartida simultáneamente. En "contador++", la operación lee, suma y guarda. Si dos hilos leen el mismo valor a la vez, ambos suman 1 y guardan el mismo resultado, perdiendo un incremento. Por eso sin "synchronized" el valor final suele ser menor a 5000.
+
+3. ¿Para qué sirve join()? ¿Qué pasaría si quitaras los join() del bloque 3 antes de llamar tabla.mostrarResultados()?
+Respuesta: El método join() sirve para pausar la ejecución del hilo principal hasta que el hilo sobre el que se llamó finalice. Si se quitan los join() del bloque 3, el Main seguiría su ejecución de inmediato e imprimiría "tabla.mostrarResultados()" antes de que los combates en los hilos secundarios terminen, por lo que la tabla se mostraría vacía o incompleta.
